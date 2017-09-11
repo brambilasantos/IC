@@ -131,3 +131,21 @@ dev.off()
 s = summary(fit)
 capture.output(s, file='/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/Graficos/summary-etg-Lw3ratio_vs_Lw1(best_fit).txt')
 
+#clustering para as ETG em MPA-JHU data
+library(mclust)
+data = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/etg_MPA-JHU.dat', header=T, sep='')
+#stellar mass -> col10
+#SFR          -> col12
+data = subset(data, select = c(alog_mass_tot, alog_ssfr_tot))
+data = scale(data)
+fit = Mclust(data)
+setEPS()
+postscript('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/Graficos/Mclust/etg_MPA-JHU:sSFR-Mclust(best_fit).eps')
+par(mfrow = c(2,2))
+plot(fit, what = 'BIC')
+plot(fit, what = 'classification')
+plot(fit, what = 'uncertainty')
+plot(fit, what = 'density')
+dev.off()
+s = summary(fit)
+capture.output(s, file='/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/Graficos/Mclust/summary-etg_MPA-JHU:sSFR-Mclust(best_fit).txt')
