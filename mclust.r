@@ -149,3 +149,5 @@ plot(fit, what = 'density')
 dev.off()
 s = summary(fit)
 capture.output(s, file='/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/Graficos/Mclust/summary-etg_MPA-JHU:sSFR-Mclust(best_fit).txt')
+
+
