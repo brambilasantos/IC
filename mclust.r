@@ -184,3 +184,27 @@ plot(fit, what = 'density')
 dev.off()
 s = summary(fit)
 capture.output(s, file='/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/Graficos/Mclust/summary-netg_MPA-JHU:sSFR-Mclust(best_fit).txt')
+
+
+# Checar o overlap entre as etg do Salim e da MPA-JHU
+library(mclust)
+etg_mpa = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/etg_MPA-JHU.dat', header=T, sep='')
+#stellar mass -> col10
+#SFR          -> col12
+etg_mpa = subset(etg_mpa, select = c(alog_mass_tot, alog_ssfr_tot))
+fit = Mclust(etg_mpa, G=2)
+candidates_mpa = subset(fit$data, fit$classification == 2)
+candidates_mpa = data.frame(candidates_mpa)
+write.table(candidates_mpa, '/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/Mclust_candidates-MPA.dat', 
+            row.names=F, col.names=T, sep='')
+
+
+etg_salim = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/etg_dr12+salim.dat', header=T, sep='')
+etg_salim = subset(etg_salim, etg_salim$col10 > -99, select = c(col10, col12))
+etg_salim$col11 = etg_salim$col12 - etg_salim$col10
+etg_salim$col12 <- NULL
+fit = Mclust(etg_salim, G=2)
+candidates_salim = subset(fit$data, fit$classification == 2)
+candidates_salim = data.frame(candidates_salim)
+write.table(candidates_salim, '/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/Mclust_candidates-Salim.dat', 
+            row.names=F, col.names=T, sep='')
