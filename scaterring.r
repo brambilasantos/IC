@@ -523,3 +523,143 @@ legend('topleft', legend=c('etg', 'netg', 'riguccini+15', 'possible miegs'), pch
 dev.off()
 
 
+#color - mag plots para MPA-JHU
+
+etg = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/etg_MPA-JHU.dat', header=T, sep='')
+netg = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/netg_MPA-JHU.dat', header=T, sep='')
+douglas = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/possible_miegs-MPA-JHU.dat', 
+                     header=T, sep='')
+laurie = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/miegs-MPA-JHU.dat', header=T, 
+                    sep='')
+
+etg_gr = etg$dered_g - etg$dered_r
+netg_gr = netg$dered_g - netg$dered_r
+douglas_gr = douglas$dered_g - douglas$dered_r
+laurie_gr = laurie$dered_g - laurie$dered_r
+
+setEPS()
+postscript('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/Graficos/g-r_vs_r-MPA-JHU.eps')
+plot(etg$dered_r, etg_gr, col='red', pch=16, xlab = "r", 
+     ylab ='g-r', main= 'color-mag for MPA-JHU data, with dered magnitudes', 
+     xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F)
+axis(side=1, at=seq(from=11.4, to=18.0, by=0.1))
+axis(side=2, at=seq(from= 0.10, to=0.95, by=0.1))
+par(new=T)
+plot(netg$dered_r, netg_gr, col='deepskyblue3', pch=16, xlab = "", 
+     ylab ='', main= '', xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F)
+par(new=T)
+plot(douglas$dered_r, douglas_gr, col='red', pch=16, xlab = "", 
+     ylab ='', main= '', xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F)
+par(new=T)
+plot(douglas$dered_r, douglas_gr, col='black', pch=2, xlab = "", 
+     ylab ='', main= '', xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F, cex=1.5, lwd=2)
+par(new=T)
+plot(laurie$dered_r, laurie_gr, col='deepskyblue3', pch=16, xlab = "", 
+     ylab ='', main= '', xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F)
+par(new=T)
+plot(laurie$dered_r, laurie_gr, col='green', pch=0, xlab = "", 
+     ylab ='', main= '', xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F, cex=1.5, lwd=2)
+for(i in 1:6){
+  text(douglas$dered_r[i], douglas_gr[i] + 0.05, 
+       douglas$X_names[i], col='black', lwd=2)}
+for(i in 1:8){
+  text(laurie$dered_r[i], laurie_gr[i] + 0.05, 
+       laurie$X_name[i], col='black', lwd=2)}
+legend('topright', legend=c('etg', 'netg', 'riguccini+15', 'possible miegs'), pch=c(16,16,0,2), 
+       col=c('red','deepskyblue3','green3','black'), bty='n')
+dev.off()
+
+
+
+#color - mag plots para Salim
+
+etg = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/etg_dr12+salim.dat', header=T, sep='')
+netg = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/netg_dr12+salim.dat', header=T, sep='')
+douglas = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/dr12+salim:possible_miegs.dat', 
+                     header=T, sep='')
+laurie = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/dr12+salim:laurie_miegs.dat', header=T, 
+                    sep='')
+etg_gr = etg$dered_g - etg$dered_r
+netg_gr = netg$dered_g - netg$dered_r
+douglas_gr = douglas$dered_g - douglas$dered_r
+laurie_gr = laurie$dered_g - laurie$dered_r
+
+setEPS()
+postscript('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/Graficos/g-r_vs_r-Salim.eps')
+plot(etg$dered_r, etg_gr, col='red', pch=16, xlab = "r", 
+     ylab ='g-r', main= 'color-mag for Salim data, with dered magnitudes', 
+     xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F)
+axis(side=1, at=seq(from=11.4, to=18.0, by=0.1))
+axis(side=2, at=seq(from= 0.10, to=0.95, by=0.1))
+par(new=T)
+plot(netg$dered_r, netg_gr, col='deepskyblue3', pch=16, xlab = "", 
+     ylab ='', main= '', xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F)
+par(new=T)
+plot(douglas$dered_r, douglas_gr, col='red', pch=16, xlab = "", 
+     ylab ='', main= '', xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F)
+par(new=T)
+plot(douglas$dered_r, douglas_gr, col='black', pch=2, xlab = "", 
+     ylab ='', main= '', xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F, cex=1.5, lwd=2)
+par(new=T)
+plot(laurie$dered_r, laurie_gr, col='deepskyblue3', pch=16, xlab = "", 
+     ylab ='', main= '', xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F)
+par(new=T)
+plot(laurie$dered_r, laurie_gr, col='green', pch=0, xlab = "", 
+     ylab ='', main= '', xlim = c(11.4, 18.0), ylim= c(0.10, 0.95), axes=F, cex=1.5, lwd=2)
+for(i in 1:6){
+  text(douglas$dered_r[i], douglas_gr[i] + 0.05, 
+       douglas$X_names[i], col='black', lwd=2)}
+for(i in 1:8){
+  text(laurie$dered_r[i], laurie_gr[i] + 0.05, 
+       laurie$X_name[i], col='black', lwd=2)}
+legend('topright', legend=c('etg', 'netg', 'riguccini+15', 'possible miegs'), pch=c(16,16,0,2), 
+       col=c('red','deepskyblue3','green3','black'), bty='n')
+dev.off()
+
+
+#Overlap Candidates MPA-Salim
+etg_salim = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/etg_dr12+salim.dat', header=T, sep='')
+#stellar mass -> col10
+#SFR          -> col12
+etg_salim = subset(etg_salim, etg_salim$col10 > -99, select = c(col10, col12))
+etg_salim$log_ssfr = etg_salim$col12 - etg_salim$col10
+etg_salim$col12 <- NULL
+
+fit = Mclust(etg_salim, G=2)
+salim_candidates = subset(fit$data, fit$classification == 1)
+etg_salim2 = subset(fit$data, fit$classification == 2)
+
+etg_salim$log_ssfr = etg_salim$col12 - etg_salim$col10
+etg_salim$log_mass = etg_salim$col10
+overlap = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/overlap_candidates_MPA-Salim.dat', header=T, sep='')
+
+douglas = read.table('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/dr12+salim:possible_miegs.dat', header=T, sep='')
+douglas$log_ssfr = douglas$col12 - douglas$col10
+douglas$log_mass = douglas$col10
+
+setEPS()
+postscript('/home/brambila/IC/IC-Paulo/PROJECT/Coma_Analize/Graficos/overlap_etg_MPA-Salim.epd')
+plot(salim_candidates, col='red', pch=1, xlab = "Log M* (salim) [Msun]", 
+     ylab ='Log sSFR (salim)', main = 'Overlap Between ETG from MPA-JHU and Salim data', xlim = c(8.7, 11.5), 
+     ylim= c(-14, -8.5), axes=T)
+par(new=T)
+plot(etg_salim2, col='red', pch=4, xlab = "", 
+     ylab ='', xlim = c(8.7, 11.5), 
+     ylim= c(-14, -8.5), axes=F)
+par(new=T)
+plot(overlap$log_mass.Salim., overlap$log_ssfr.Salim., col='red', pch=0, xlab = "", 
+     ylab ='', xlim = c(8.7, 11.5), 
+     ylim= c(-14, -8.5), 
+     cex = 1.5, lwd=2, axes=F)
+par(new=T)
+plot(douglas$log_mass, douglas$log_ssfr, col='black', pch=2, xlab = "", 
+     ylab ='', xlim = c(8.7, 11.5), 
+     ylim= c(-14, -8.5), 
+     cex = 3.0, lwd = 2, axes=F)
+for(i in 1:6){
+  text(douglas$log_mass[i], douglas$log_ssfr[i] + 0.4, 
+       douglas$names[i], col='black', lwd=2)}
+legend('topright', legend=c('salim candidates', 'salim etg', 'overlap MPA-Salim ', 'possible miegs'), pch=c(1,4,0,2), 
+       col=c('red','red','red','black'), bty='n')
+
+dev.off()
